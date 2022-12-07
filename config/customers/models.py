@@ -1,8 +1,9 @@
 from django.db import models
+from core.models import BaseModel
 
 
 # Create your models here.
-class Customer(models.Model):
+class Customer(BaseModel):
     user_name = models.CharField(max_length=50)
     email = models.EmailField()
     phone_number = models.CharField(max_length=11)
@@ -12,7 +13,7 @@ class Customer(models.Model):
         return self.user_name
 
 
-class Profile(models.Model):
+class Profile(BaseModel):
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE, related_name="cprofile")
     first_name = models.CharField(max_length=50, )
     last_name = models.CharField(max_length=50, )
@@ -24,7 +25,7 @@ class Profile(models.Model):
         return self.first_name
 
 
-class Address(models.Model):
+class Address(BaseModel):
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name="padress")
     province = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
