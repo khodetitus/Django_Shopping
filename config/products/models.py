@@ -34,7 +34,7 @@ class ProductFeature(BaseModel):
     color = models.CharField(max_length=20)
     type = models.CharField(max_length=25)
     material = models.CharField(max_length=25)
-    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='features')
 
     def __str__(self):
         return self.color
@@ -43,8 +43,8 @@ class ProductFeature(BaseModel):
 class Comment(BaseModel):
     title = models.CharField(max_length=25)
     body = models.TextField()
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='c_comments')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='p_comments')
 
     def __str__(self):
         return self.title
