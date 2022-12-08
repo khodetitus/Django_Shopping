@@ -1,11 +1,23 @@
 from django.db import models
-from ..core.models import BaseModel
-from ..customers.models import Customer
+from core.models import BaseModel
+from customers.models import Customer
 
 
 # Create your models here
+
+
+class Category(BaseModel):
+    name = models.CharField(max_length=25)
+    slug = models.SlugField(unique=True)
+    sub_category = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
+    is_sub = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+
+
 class Product(BaseModel):
-    category = models.ManyToManyField('Category', on_delete=models.CASCADE)
+    category = models.ManyToManyField(Category, related_name='products')
     name = models.CharField(max_length=25)
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to='products')
@@ -14,20 +26,10 @@ class Product(BaseModel):
     available = models.BooleanField(default=True)
     stock = models.PositiveIntegerField()
 
+    def __str__(self):
+        return self.name
+
     # is_deleted = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
-
-
-class Category(BaseModel):
-    name = models.CharField(max_length=25)
-    slug = models.SlugField(unique=True)
-    sub_category = models.ManyToManyField("self", blank=True, null=True, on_delete=models.CASCADE)
-    is_sub = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
 
 
 class ProductFeature(BaseModel):

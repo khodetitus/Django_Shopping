@@ -1,7 +1,7 @@
 from django.db import models
-from ..core.models import BaseModel
-from ..customers.models import Customer
-from ..products.models import Product
+from core.models import BaseModel
+from customers.models import Customer
+from products.models import Product
 
 
 # Create your models here.

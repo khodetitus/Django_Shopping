@@ -1,5 +1,5 @@
 from django.db import models
-from ..core.models import BaseModel
+from core.models import BaseModel
 
 
 # Create your models here.
@@ -17,7 +17,8 @@ class Profile(BaseModel):
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE, related_name="cprofile")
     first_name = models.CharField(max_length=50, )
     last_name = models.CharField(max_length=50, )
-    gender = models.CharField(max_length=10, choices=["Male", "Female"], null=True, blank=True)
+    CHOICES = [("male", "Male"), ("female", "Female")]
+    gender = models.CharField(max_length=10, choices=CHOICES, null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='profile_image', null=True, blank=True)
 
