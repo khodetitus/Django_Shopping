@@ -36,3 +36,9 @@ class Address(BaseModel):
 
     def __str__(self):
         return self.city
+
+
+class OtpCode(BaseModel):
+    phone_number = models.CharField(max_length=11)
+    code = models.PositiveIntegerField()
+    email = models.EmailField(null=True, blank=True)
