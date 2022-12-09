@@ -33,10 +33,10 @@ class Product(BaseModel):
 
 
 class ProductFeature(BaseModel):
+    product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='features')
     color = models.CharField(max_length=20)
     type = models.CharField(max_length=25)
     material = models.CharField(max_length=25)
-    product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='features')
 
     def __str__(self):
         return self.color
