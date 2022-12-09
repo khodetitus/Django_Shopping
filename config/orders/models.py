@@ -11,6 +11,9 @@ class Order(BaseModel):
     paid = models.BooleanField(default=False)
     discount = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.customer
+
 
 class OrderItem(BaseModel):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -18,11 +21,17 @@ class OrderItem(BaseModel):
     price = models.PositiveIntegerField()
     quantity = models.PositiveIntegerField(default=1)
 
+    def __str__(self):
+        return self.product
+
 
 class Coupon(BaseModel):
     discount = models.IntegerField()
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='use_coupon')
     code = models.CharField(max_length=16)
     valid_from = models.DateTimeField()
     valid_to = models.DateTimeField()
     active = models.BooleanField(default=False)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='use_coupon')
+
+    def __str__(self):
+        return self.code
