@@ -6,4 +6,4 @@ from django.views.generic import View
 
 class ProductView(View):
     def get(self, request):
-        return render(request, "products/product.html")
+        return render(request, "products/products.html")
