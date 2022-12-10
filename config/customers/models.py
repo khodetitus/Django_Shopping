@@ -20,7 +20,7 @@ class Profile(BaseModel):
     CHOICES = [("male", "Male"), ("female", "Female")]
     gender = models.CharField(max_length=10, choices=CHOICES, null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-    image = models.ImageField(upload_to='profile_image', null=True, blank=True)
+    image = models.ImageField(upload_to='profile_image', null=True, blank=True, default='default.jpg')
 
     def __str__(self):
         return self.first_name
