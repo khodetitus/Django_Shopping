@@ -20,16 +20,16 @@ class Product(BaseModel):
     category = models.ManyToManyField(Category, related_name='products')
     name = models.CharField(max_length=25)
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='products')
+    image = models.ImageField(upload_to='products', default='default.jpg')
     description = models.TextField()
     price = models.PositiveIntegerField()
     available = models.BooleanField(default=True)
     stock = models.PositiveIntegerField()
 
+    # is_deleted = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name
-
-    # is_deleted = models.BooleanField(default=False)
 
 
 class ProductFeature(BaseModel):
