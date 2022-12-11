@@ -1,8 +1,7 @@
 from django.test import TestCase
 from .models import Category, Product, ProductFeature, Comment
+from customers.models import Customer
 
-
-# Create your tests here.
 
 class CategoryModelTest(TestCase):
     def setUp(self):
@@ -61,6 +60,8 @@ class CommentModelTest(TestCase):
         self.category = Category.objects.create(name="category", slug="category", sub_category=None, is_sub=False)
         self.product = Product.objects.create(category=self.category, name="product", slug="product", price=1000,
                                               available=True, stock=10, image="image", description="description")
+        self.customer = Customer.objects.create(user_name="masoud", email="masoudpro2@gmail.com",
+                                                phone_number="09120572655", password="123456")
         self.comment = Comment.objects.create(title="title", body="body", customer=None, product=self.product)
 
     def test_comment_creation(self):
