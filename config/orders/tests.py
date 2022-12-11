@@ -3,8 +3,6 @@ from .models import Order, OrderItem, Coupon
 from customers.models import Customer
 
 
-# Create your tests here.
-
 class OrderModelTest(TestCase):
     def setUp(self):
         self.customer = Customer.objects.create(user_name="masoud", email="masoudpro2@gmail.com",
