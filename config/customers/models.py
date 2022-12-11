@@ -2,7 +2,6 @@ from django.db import models
 from core.models import BaseModel
 
 
-# Create your models here.
 class Customer(BaseModel):
     user_name = models.CharField(max_length=50)
     email = models.EmailField()

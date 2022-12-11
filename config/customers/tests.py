@@ -2,7 +2,6 @@ from django.test import TestCase
 from .models import Customer, Address, Profile, OtpCode
 
 
-# Create your tests here.
 class CustomerTestCase(TestCase):
     def setUp(self):
         self.customer = Customer.objects.create(user_name="masoud", email="masoudpro2@gmail.com",
