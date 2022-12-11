@@ -4,8 +4,6 @@ from customers.models import Customer
 from products.models import Product
 
 
-# Create your models here.
-
 class Order(BaseModel):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='orders')
     paid = models.BooleanField(default=False)
