@@ -3,9 +3,6 @@ from .managers import BaseManager
 from django.utils import timezone
 
 
-# Create your models here.
-
-
 class BaseModel(models.Model):
     class Meta:
         abstract = True
@@ -53,7 +50,7 @@ class BaseModel(models.Model):
         help_text="This is active status",
     )
 
-    def deleter(self, using=None, keep_parents=False):
+    def deleter(self, using=None):
         self.deleted_at = timezone.now()
         self.is_deleted = True
         self.save(using=using)
