@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .models import Order, OrderItem, Coupon
 from customers.models import Customer
+from products.models import Product, Category
 
 
 class OrderModelTest(TestCase):
@@ -20,13 +21,16 @@ class OrderModelTest(TestCase):
 
 class OrderItemModelTest(TestCase):
     def setUp(self):
+        self.category = Category.objects.create(name="watch", slug="category", sub_category=None, is_sub=False)
+        self.product = Product.objects.create(category=self.category, name="product", slug="product", price=1000,
+                                              available=True, stock=10, image="image", description="description")
         self.customer = Customer.objects.create(user_name="masoud", email="masoudpro2@gmail.com",
                                                 phone_number="09120572655", password="123456")
         self.order = Order.objects.create(customer=self.customer, paid=True, discount=10)
-        self.order_item = OrderItem.objects.create(product="product", order=self.order, price=1000, quantity=2)
+        self.order_item = OrderItem.objects.create(product=self.product, order=self.order, price=1000, quantity=2)
 
     def test_order_item_creation(self):
-        self.assertEqual(self.order_item.product, "product")
+        self.assertEqual(self.order_item.product, self.product)
         self.assertEqual(self.order_item.order, self.order)
         self.assertEqual(self.order_item.price, 1000)
         self.assertEqual(self.order_item.quantity, 2)
