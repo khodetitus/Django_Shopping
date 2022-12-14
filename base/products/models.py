@@ -1,6 +1,6 @@
 from django.db import models
 from core.models import BaseModel
-from customers.models import Customer
+from customers.models import User
 
 
 class Category(BaseModel):
@@ -21,7 +21,7 @@ class Product(BaseModel):
     category = models.ManyToManyField(Category, related_name='products')
     name = models.CharField(max_length=25)
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='static/products', default='default.jpg', null=True, blank=True)
+    image = models.ImageField(upload_to='products', default='default/default_product.png', null=True, blank=True)
     description = models.TextField()
     price = models.PositiveIntegerField()
     is_available = models.BooleanField(default=True)
@@ -51,7 +51,7 @@ class ProductFeature(BaseModel):
 class Comment(BaseModel):
     title = models.CharField(max_length=25)
     body = models.TextField()
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='c_comments')
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='c_comments')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='p_comments')
 
     def __str__(self):
