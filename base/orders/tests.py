@@ -1,13 +1,13 @@
 from django.test import TestCase
 from .models import Order, OrderItem, Coupon
-from customers.models import Customer
+from customers.models import User
 from products.models import Product, Category
 
 
 class OrderModelTest(TestCase):
     def setUp(self):
-        self.customer = Customer.objects.create(user_name="masoud", email="masoudpro2@gmail.com",
-                                                phone_number="09120572655", password="123456")
+        self.customer = User.objects.create(username="masoud", email="masoudpro2@gmail.com",
+                                            phone_number="09120572655", password="123456")
         self.order = Order.objects.create(customer=self.customer, paid=True, discount=10)
 
     def test_order_creation(self):
@@ -24,8 +24,8 @@ class OrderItemModelTest(TestCase):
         self.category = Category.objects.create(name="watch", slug="category", sub_category=None, is_sub=False)
         self.product = Product.objects.create(category=self.category, name="product", slug="product", price=1000,
                                               available=True, stock=10, image="image", description="description")
-        self.customer = Customer.objects.create(user_name="masoud", email="masoudpro2@gmail.com",
-                                                phone_number="09120572655", password="123456")
+        self.customer = User.objects.create(username="masoud", email="masoudpro2@gmail.com",
+                                            phone_number="09120572655", password="123456")
         self.order = Order.objects.create(customer=self.customer, paid=True, discount=10)
         self.order_item = OrderItem.objects.create(product=self.product, order=self.order, price=1000, quantity=2)
 
@@ -41,8 +41,8 @@ class OrderItemModelTest(TestCase):
 
 class CouponModelTest(TestCase):
     def setUp(self):
-        self.customer = Customer.objects.create(user_name="masoud", email="masoudpro2@gmail.com",
-                                                phone_number="09120572655", password="123456")
+        self.customer = User.objects.create(username="masoud", email="masoudpro2@gmail.com",
+                                            phone_number="09120572655", password="123456")
         self.order = Order.objects.create(customer=self.customer, paid=True, discount=10)
         self.coupon = Coupon.objects.create(order=self.order, discount=10, code="123456",
                                             valid_from="2022-12-09 14:00:00", valid_to="2022-12-15 14:00:00",

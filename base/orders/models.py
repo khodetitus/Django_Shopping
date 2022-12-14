@@ -1,11 +1,11 @@
 from django.db import models
 from core.models import BaseModel
-from customers.models import Customer
+from customers.models import User
 from products.models import Product
 
 
 class Order(BaseModel):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='orders')
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     paid = models.BooleanField(default=False)
     discount = models.IntegerField(default=0)
 
