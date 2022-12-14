@@ -1,14 +1,14 @@
 from django.test import TestCase
-from .models import Customer, Address, Profile, OtpCode
+from .models import User, Address, Profile, OtpCode
 
 
 class CustomerTestCase(TestCase):
     def setUp(self):
-        self.customer = Customer.objects.create(user_name="masoud", email="masoudpro2@gmail.com",
-                                                phone_number="09120572655", password="123456")
+        self.customer = User.objects.create(username="masoud", email="masoudpro2@gmail.com",
+                                            phone_number="09120572655", password="123456")
 
     def test_customer_creation(self):
-        self.assertEqual(self.customer.user_name, "masoud")
+        self.assertEqual(self.customer.username, "masoud")
         self.assertEqual(self.customer.email, "masoudpro2@gmail.com")
         self.assertEqual(self.customer.phone_number, "09120572655")
 
@@ -18,8 +18,8 @@ class CustomerTestCase(TestCase):
 
 class ProfileTestCase(TestCase):
     def setUp(self):
-        self.customer = Customer.objects.create(user_name="masoud", email="masoudpro2@gmail.com",
-                                                phone_number="09120572655", password="123456")
+        self.customer = User.objects.create(username="masoud", email="masoudpro2@gmail.com",
+                                            phone_number="09120572655", password="123456")
         self.profile = Profile.objects.create(customer=self.customer, first_name="masoud", last_name="zandi",
                                               gender="male", birth_date="1997-07-09", image="profile_image")
 
@@ -36,8 +36,8 @@ class ProfileTestCase(TestCase):
 
 class AddressTestCase(TestCase):
     def setUp(self):
-        self.customer = Customer.objects.create(user_name="masoud", email="masoudpro2@gmail.com",
-                                                phone_number="09120572655", password="123456")
+        self.customer = User.objects.create(username="masoud", email="masoudpro2@gmail.com",
+                                            phone_number="09120572655", password="123456")
         self.profile = Profile.objects.create(customer=self.customer, first_name="masoud", last_name="zandi",
                                               gender="male", birth_date="1997-07-09", image="profile_image")
         self.address = Address.objects.create(profile=self.profile, province="tehran", city="tehran",
