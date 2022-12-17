@@ -29,10 +29,11 @@ class RegisterView(View):
 
 class LoginView(View):
     form_class = LoginForm
+    template_name = 'customers/login.html'
 
     def get(self, request):
         form = self.form_class()
-        return render(request, 'customers/login.html', {"form": form})
+        return render(request, self.template_name, {"form": form})
 
     def post(self, request):
         form = self.form_class(request.POST)
@@ -45,9 +46,11 @@ class LoginView(View):
                 messages.success(request, "You Logged In Successfully", "success")
                 return redirect("products:home")
             messages.error(request, "Invalid User Name or Password", "danger")
-        return render(request, 'customers/login.html', {"form": form})
+        return render(request, self.template_name, {"form": form})
 
 
 class LogoutView(View):
     def get(self, request):
-        return render(request, 'customers/logout.html')
+        logout(request)
+        messages.success(request, "You Logged Out Successfully", "success")
+        return redirect("products:home")
