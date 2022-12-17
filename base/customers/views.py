@@ -4,11 +4,17 @@ from .forms import RegisterForm, LoginForm
 from .models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class RegisterView(View):
     class_form = RegisterForm
     template_name = 'customers/register.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("products:home")
+        return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):
         form = self.class_form()
@@ -31,7 +37,13 @@ class LoginView(View):
     form_class = LoginForm
     template_name = 'customers/login.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("products:home")
+        return super().dispatch(request, *args, **kwargs)
+
     def get(self, request):
+
         form = self.form_class()
         return render(request, self.template_name, {"form": form})
 
@@ -49,8 +61,16 @@ class LoginView(View):
         return render(request, self.template_name, {"form": form})
 
 
-class LogoutView(View):
+class LogoutView(LoginRequiredMixin, View):
+    login_url = "customers:login"
+
     def get(self, request):
         logout(request)
         messages.success(request, "You Logged Out Successfully", "success")
         return redirect("products:home")
+
+
+class ProfileView(LoginRequiredMixin, View):
+    def get(self, request, user_id):
+        user = User.objects.get(id=user_id)
+        return render(request, "customers/profile.html", {"user": user})
