@@ -85,3 +85,25 @@ class LoginForm(forms.Form):
         attrs={"class": "form-control", "placeholder": "Phone Number"}))
     password = forms.CharField(label="",
                                widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Password"}))
+
+
+class ProfileForm(forms.Form):
+    fist_name = forms.CharField(label="",
+                                widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "First Name"}))
+    last_name = forms.CharField(label="",
+                                widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Last Name"}))
+    # gender = forms.ChoiceField(label="")
+    birth_date = forms.DateField(label="",
+                                 widget=forms.DateInput(attrs={"class": "form-control", "placeholder": "Birth Date"}))
+    image = forms.ImageField(label="", widget=forms.FileInput(attrs={"class": "form-control"}))
+    province = forms.CharField(label="",
+                               widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Province"}))
+    city = forms.CharField(label="", widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "City"}))
+    address1 = forms.CharField(label="",
+                               widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Address 1"}))
+    address2 = forms.CharField(label="",
+                               widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Address 2"}))
+    tel = forms.CharField(label="", widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Tel"}))
+    postal_code = forms.CharField(label="",
+                                  widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Postal Code"}))
+
