@@ -8,7 +8,9 @@ from django.core.validators import RegexValidator
 class User(AbstractBaseUser):
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(unique=True)
-    phone_number = models.CharField(max_length=11, unique=True)
+    phone_number = models.CharField(max_length=11, unique=True, validators=[
+        RegexValidator(regex=r'09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}',
+                       message='Phone number must be entered in the format: "09xxxxxxxxx". Up to 11 digits allowed.')])
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
@@ -16,8 +18,12 @@ class User(AbstractBaseUser):
     REQUIRED_FIELDS = ['username', 'email']
     objects = UserManager()
 
+    class Meta:
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
+
     def __str__(self):
-        return self.username
+        return f"Username: {self.username} - Email: {self.email} - Phone Number : {self.phone_number} - Admin: {self.is_admin}"
 
     def has_perm(self, perm, obj=None):
         return True
@@ -39,6 +45,10 @@ class Profile(BaseModel):
     birth_date = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='profile_image', null=True, blank=True, default='default.jpg')
 
+    class Meta:
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profiles'
+
     def save(self, *args, **kwargs):
         male = 'default/default_male.png'
         female = 'default/default_female.png'
@@ -49,7 +59,7 @@ class Profile(BaseModel):
         super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.first_name
+        return f"Customer: {self.customer} - First Name: {self.first_name} - Last Name : {self.last_name} - Gender: {self.gender}"
 
 
 class Address(BaseModel):
@@ -58,17 +68,28 @@ class Address(BaseModel):
     city = models.CharField(max_length=50)
     address1 = models.CharField(max_length=200)
     address2 = models.CharField(max_length=200, null=True, blank=True)
-    tel = models.CharField(max_length=11)
-    postal_code = models.CharField(max_length=10)
+    tel = models.CharField(max_length=11, unique=True, validators=[
+        RegexValidator(regex=r'^0[0-9]{2,}[0-9]{7,}$', message='The Telephone Number invalid',
+                       code='invalid_phone_number')])
+    postal_code = models.CharField(max_length=10, unique=True)
+
+    class Meta:
+        verbose_name = 'Address'
+        verbose_name_plural = 'Addresses'
 
     def __str__(self):
-        return self.city
+        return f"Profile: {self.profile} - City: {self.city}"
 
 
 class OtpCode(BaseModel):
-    phone_number = models.CharField(max_length=11)
+    phone_number = models.CharField(max_length=11, unique=True)
     code = models.PositiveIntegerField()
-    email = models.EmailField(null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField(null=True, blank=True, unique=True)
+
+    class Meta:
+        verbose_name = 'Otp Code'
+        verbose_name_plural = 'Otp Codes'
 
     def __str__(self):
-        return self.phone_number
+        return f"Phone Number: {self.phone_number} - Email: {self.email}"
