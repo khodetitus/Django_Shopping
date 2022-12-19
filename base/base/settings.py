@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'core',
     'customers',
     'orders',
-    'products'
+    'products',
+    "admin_interface",
+    "colorfield",
 ]
 
 MIDDLEWARE = [
