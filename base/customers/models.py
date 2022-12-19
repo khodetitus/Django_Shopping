@@ -37,7 +37,7 @@ class User(AbstractBaseUser):
 
 
 class Profile(BaseModel):
-    customer = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cprofile")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cprofile")
     first_name = models.CharField(max_length=50, )
     last_name = models.CharField(max_length=50, )
     CHOICES = [("male", "Male"), ("female", "Female")]
@@ -59,7 +59,7 @@ class Profile(BaseModel):
         super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"Customer: {self.customer} - First Name: {self.first_name} - Last Name : {self.last_name} - Gender: {self.gender}"
+        return f"User: {self.user} - First Name: {self.first_name} - Last Name : {self.last_name} - Gender: {self.gender}"
 
 
 class Address(BaseModel):
