@@ -14,7 +14,7 @@ class Category(BaseModel):
         verbose_name_plural = "categories"
 
     def __str__(self):
-        return self.name
+        return f"Name: {self.name} - Sub Category: {self.sub_category}"
 
 
 class Product(BaseModel):
@@ -25,7 +25,13 @@ class Product(BaseModel):
     description = models.TextField()
     price = models.PositiveIntegerField()
     is_available = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     stock = models.PositiveIntegerField()
+
+    class Meta:
+        verbose_name = "product"
+        verbose_name_plural = "products"
 
     def save(self, *args, **kwargs):
         if self.stock > 0:
@@ -35,7 +41,7 @@ class Product(BaseModel):
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return f"Category: {self.category} - Name: {self.name} - Price: {self.price} - Available: {self.is_available} - Stock: {self.stock}"
 
 
 class ProductFeature(BaseModel):
@@ -44,8 +50,12 @@ class ProductFeature(BaseModel):
     type = models.CharField(max_length=25)
     material = models.CharField(max_length=25)
 
+    class Meta:
+        verbose_name = "Product Feature"
+        verbose_name_plural = "Product Features"
+
     def __str__(self):
-        return self.color
+        return f"Product: {self.product} - Color: {self.color} - Type: {self.type} - Material: {self.material}"
 
 
 class Comment(BaseModel):
@@ -54,5 +64,9 @@ class Comment(BaseModel):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='c_comments')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='p_comments')
 
+    class Meta:
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments"
+
     def __str__(self):
-        return self.title
+        return f"Customer: {self.customer} - Product: {self.product}"
