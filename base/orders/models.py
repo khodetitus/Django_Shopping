@@ -7,10 +7,16 @@ from products.models import Product
 class Order(BaseModel):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     paid = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     discount = models.IntegerField(default=0)
 
+    class Meta:
+        verbose_name = 'Order'
+        verbose_name_plural = 'Orders'
+
     def __str__(self):
-        return self.customer
+        return f"Customer: {self.customer} - DateTime Created: {self.created} - Paid: {self.paid} - Discount: {self.discount}"
 
 
 class OrderItem(BaseModel):
@@ -19,17 +25,25 @@ class OrderItem(BaseModel):
     price = models.PositiveIntegerField()
     quantity = models.PositiveIntegerField(default=1)
 
+    class Meta:
+        verbose_name = 'Order Item'
+        verbose_name_plural = 'Order Items'
+
     def __str__(self):
-        return self.product
+        return f"Product: {self.product} - Order: {self.order} - Price: {self.price} - Quantity: {self.quantity}"
 
 
 class Coupon(BaseModel):
     discount = models.IntegerField()
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='use_coupon')
-    code = models.CharField(max_length=16)
+    code = models.CharField(max_length=16, unique=True)
     valid_from = models.DateTimeField()
     valid_to = models.DateTimeField()
     active = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name = 'Coupon'
+        verbose_name_plural = 'Coupons'
+
     def __str__(self):
-        return self.code
+        return f"Order: {self.order} - Discount: {self.discount} - Active: {self.active} - Code: {self.code}"
