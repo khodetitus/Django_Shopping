@@ -25,8 +25,6 @@ class Product(BaseModel):
     description = models.TextField()
     price = models.PositiveIntegerField()
     is_available = models.BooleanField(default=True)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
     stock = models.PositiveIntegerField()
 
     class Meta:
@@ -61,7 +59,7 @@ class ProductFeature(BaseModel):
 class Comment(BaseModel):
     title = models.CharField(max_length=25)
     body = models.TextField()
-    customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='c_comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='c_comments')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='p_comments')
 
     class Meta:
@@ -69,4 +67,4 @@ class Comment(BaseModel):
         verbose_name_plural = "Comments"
 
     def __str__(self):
-        return f"Customer: {self.customer} - Product: {self.product}"
+        return f"User: {self.user} - Product: {self.product}"
