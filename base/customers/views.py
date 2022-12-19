@@ -11,11 +11,6 @@ class RegisterView(View):
     class_form = RegisterForm
     template_name = 'customers/register.html'
 
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect("products:home")
-        return super().dispatch(request, *args, **kwargs)
-
     def get(self, request):
         form = self.class_form()
         return render(request, self.template_name, {"form": form})
@@ -25,7 +20,7 @@ class RegisterView(View):
         if form.is_valid():
             cd = form.cleaned_data
             user = User.objects.create_user(username=cd["username"], email=cd["email"],
-                                            phone_number=cd["phone_number"], password=cd["password"])
+                                            phone_number=cd["phone_number"], password=cd["password1"])
             user.save()
             messages.success(request, "You Registered Successfully", "success")
             return redirect("products:home")
@@ -74,3 +69,6 @@ class ProfileView(LoginRequiredMixin, View):
     def get(self, request, user_id):
         user = User.objects.get(id=user_id)
         return render(request, "customers/profile.html", {"user": user})
+
+    def post(self, request, user_id):
+        pass
