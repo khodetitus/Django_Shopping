@@ -5,10 +5,8 @@ from products.models import Product
 
 
 class Order(BaseModel):
-    customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     paid = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
     discount = models.IntegerField(default=0)
 
     class Meta:
@@ -16,7 +14,7 @@ class Order(BaseModel):
         verbose_name_plural = 'Orders'
 
     def __str__(self):
-        return f"Customer: {self.customer} - DateTime Created: {self.created} - Paid: {self.paid} - Discount: {self.discount}"
+        return f"User: {self.user} - DateTime Created: {self.created} - Paid: {self.paid} - Discount: {self.discount}"
 
 
 class OrderItem(BaseModel):
