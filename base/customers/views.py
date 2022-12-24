@@ -62,7 +62,7 @@ class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         messages.success(request, "You Logged Out Successfully", "success")
-        return redirect("products:home")
+        return redirect("products:landing")
 
 
 class ProfileView(LoginRequiredMixin, View):
