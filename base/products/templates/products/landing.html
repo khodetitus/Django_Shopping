@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Titus Store
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'products/css/style_landing.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- landing content -->
+    <section class="home">
+        <div class="content">
+            <h3>
+                Biggest Watch Sale
+                <br><span>Up To 30% Off</span>
+            </h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis cupiditate eius facilis fugit
+                nesciunt nobis quia quis suscipit voluptatum! Debitis impedit incidunt veniam! Cum dolor itaque
+                molestiae, quae sequi vitae.</p>
+            <button id="shopnow">Shop Now</button>
+        </div>
+        <div class="img">
+            <img src="../../../media/products/1.png" alt="" style="object-fit: scale-down">
+        </div>
+    </section>
+    <!-- landing content -->
+    <!-- top cards -->
+    <div class="container" id="top-cards">
+        <div class="row">
+            <div class="col-md-5 py-md-0">
+                <div class="card" style="background-color: #a9a9a926">
+                    <img src="../../../media/products/topcard1.png" alt="">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Smart Watch</h5>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ab beatae cum harum impedit
+                            ipsum natus quos rem repellat suscipit! Dolores, incidunt laborum odit omnis quaerat quasi
+                            quidem recusandae totam!
+                        </p>
+                        <p><strong>$200.30<strike> $250.10</strike></strong></p>
+                        <button>Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 py-md-0">
+                <div class="card" style="background-color: #a9a9a926">
+                    <img src="../../../media/products/topcard2.png" alt="">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Rolex Watch</h5>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ab beatae cum harum impedit
+                            ipsum natus quos rem repellat suscipit! Dolores, incidunt laborum odit omnis quaerat quasi
+                            quidem recusandae totam!
+                        </p>
+                        <p><strong>$150.10<strike> $200.10</strike></strong></p>
+                        <button>Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 py-md-0">
+                <div class="card" style="background-color: #a9a9a926">
+                    <img src="../../../media/products/topcard3.png" alt="">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Swatch Watch</h5>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ab beatae cum harum impedit
+                            ipsum natus quos rem repellat suscipit! Dolores, incidunt laborum odit omnis quaerat quasi
+                            quidem recusandae totam!
+                        </p>
+                        <p><strong>$50.10<strike> $60</strike></strong></p>
+                        <button>Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- top cards -->
+
+    <!-- banner -->
+    <div class="banner">
+        <div class="content">
+            <h1>Get Up To 50% Off</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, delectus eos eveniet exercitationem
+                facere fuga, impedit iste itaque magni minus necessitatibus nemo nesciunt nihil nobis placeat reiciendis
+                repudiandae tempora voluptate?</p>
+            <div id="bannerbtn"><button>SHOP NOW</button></div>
+        </div>
+    </div>
+    <!-- banner -->
+
+
+
+{% endblock %}

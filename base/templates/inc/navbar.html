@@ -1,14 +1,75 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+{% load static %}
+<!-- top navbar -->
+<div class="top-navbar">
+    <div class="top-icons">
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-instagram"></i>
+    </div>
+    <div class="other-links">
+        <button id="btn-login">
+            <a href="{% url 'customers:login' %}">Login</a>
+        </button>
+        <button id="btn-register">
+            <a href="{% url 'customers:register' %}">Register</a>
+        </button>
+        <i class="fa-solid fa-user"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
+    </div>
+</div>
+<!-- top navbar -->
+
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg" id="navbar">
     <div class="container-fluid">
-        <div class="navbar-nav">
-            <a class="nav-link active" href="#">Home</a>
-            {% if request.user.is_authenticated %}
-                <a class="nav-link active" href="{% url 'customers:logout' %}">Logout</a>
-                <a class="nav-link active" href="{% url 'customers:profile' request.user.id %}">Profile</a>
-            {% else %}
-                <a class="nav-link active" href="{% url 'customers:register' %}">Register</a>
-                <a class="nav-link active" href="{% url 'customers:login' %}">Login</a>
-            {% endif %}
+        <a class="navbar-brand" href="{% url 'products:landing' %}"><img
+                src="{% static 'products/img/titus-store_logo.png' %}" alt="" width="180px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span><i class="fa-solid fa-bars" style="color: white;"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'products:product' %}">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Bucket</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Category
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #1c1c50">
+                        <li><a class="dropdown-item" href="#">Smart Watch</a></li>
+                        <li><a class="dropdown-item" href="#">Casio</a></li>
+                        <li><a class="dropdown-item" href="#">Tissot</a></li>
+                        <li><a class="dropdown-item" href="#">Swatch</a></li>
+                        <li><a class="dropdown-item" href="#">Seiko</a></li>
+                        <li><a class="dropdown-item" href="#">Rolex</a></li>
+                        <li><a class="dropdown-item" href="#">Omega</a></li>
+                        <li><a class="dropdown-item" href="#">Hublot</a></li>
+                        <li><a class="dropdown-item" href="#">Diesel</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">About Us</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Contact Us</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit" id="search-btn">Search</button>
+            </form>
         </div>
     </div>
 </nav>
+<!-- navbar -->
+
