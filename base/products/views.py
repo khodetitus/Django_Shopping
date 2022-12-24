@@ -10,3 +10,8 @@ class ProductView(View):
 
     def post(self, request):
         return render(request, "products/products.html")
+
+
+class LandingView(View):
+    def get(self, request):
+        return render(request, "products/landing.html")
