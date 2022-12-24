@@ -92,7 +92,7 @@ class ProfileForm(forms.Form):
                                 widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "First Name"}))
     last_name = forms.CharField(label="",
                                 widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Last Name"}))
-    # gender = forms.ChoiceField(label="")
+    gender = forms.ChoiceField(label="", choices=[("Male", "Male"), ("Female", "Female")])
     birth_date = forms.DateField(label="",
                                  widget=forms.DateInput(attrs={"class": "form-control", "placeholder": "Birth Date"}))
     image = forms.ImageField(label="", widget=forms.FileInput(attrs={"class": "form-control"}))
@@ -106,4 +106,3 @@ class ProfileForm(forms.Form):
     tel = forms.CharField(label="", widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Tel"}))
     postal_code = forms.CharField(label="",
                                   widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Postal Code"}))
-
