@@ -1,0 +1,363 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top-navbar {
+    width: 100%;
+    height: 7vh;
+    background-color: #a9a9a926;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.top-icons {
+    margin-left: 45px;
+}
+
+.top-icons i {
+    font-size: 20px;
+    color: #1c1c50;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.other-links {
+    margin-right: 33px;
+}
+
+.other-links i {
+    color: #1c1c50;
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#btn-login {
+    width: 100px;
+    border: 2px solid #1c1c50;
+    color: #1c1c50;
+    font-weight: bold;
+    border-radius: 5px;
+    height: 5vh;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+#btn-login a {
+    text-decoration: none;
+    color: #1c1c50;
+    transition: 0.5s ease;
+}
+
+#btn-login a:hover {
+    background-color: #1c1c50;
+    color: white;
+}
+
+#btn-login:hover {
+    background-color: #1c1c50;
+    color: white;
+}
+
+#btn-register {
+    width: 100px;
+    border: 2px solid #1c1c50;
+    color: #1c1c50;
+    font-weight: bold;
+    border-radius: 5px;
+    height: 5vh;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+#btn-register a {
+    text-decoration: none;
+    color: #1c1c50;
+    transition: 0.5s ease;
+}
+
+#btn-register a:hover {
+    background-color: #1c1c50;
+    color: white;
+}
+
+#btn-register:hover {
+    background-color: #1c1c50;
+    color: white;
+}
+
+
+@media screen and (max-width: 350px) {
+    .top-icons {
+        margin-left: 10px;
+    }
+
+    .top-icons i {
+        font-size: 10px;
+    }
+
+    .other-links {
+        margin-right: 10px;
+    }
+
+    .other-links i {
+        font-size: 10px;
+    }
+
+    #btn-login {
+        width: 50px;
+        height: 5vh;
+        font-size: 13px;
+    }
+
+    #btn-register {
+        width: 60px;
+        height: 5vh;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .top-icons {
+        margin-left: 5px;
+    }
+
+    .top-icons i {
+        font-size: 12px;
+    }
+
+    .other-links {
+        margin-right: 10px;
+    }
+
+    .other-links i {
+        font-size: 12px;
+    }
+
+    #btn-login {
+        width: 40px;
+        height: 5vh;
+        font-size: 10px;
+    }
+
+    #btn-register {
+        width: 50px;
+        height: 5vh;
+        font-size: 10px;
+    }
+}
+
+/* home section */
+.home-section {
+    width: 100%;
+    height: 93vh;
+    background-color: #a9a9a926;
+}
+
+/* navbar */
+#navbar {
+    background-color: #1c1c50;
+    font-size: 16px;
+    font-family: 'Roboto Slab', serif;
+}
+
+#navbar .nav-link {
+    color: white;
+    font-weight: bold;
+    margin-left: 5px;
+    transition: 0.5s ease;
+}
+
+#navbar .nav-link:hover {
+    color: white;
+    border-radius: 5px;
+}
+
+.dropdown li a {
+    color: white;
+}
+
+#search-btn {
+    color: white;
+    border: 1px solid white;
+}
+
+#search-btn:hover {
+    background-color: #1c1c50;
+}
+
+/* navbar */
+/* home content */
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 0;
+    font-family: 'Roboto Slab', serif;
+}
+
+.home .img {
+    flex: 1 1 400px;
+}
+
+.home .img img {
+    width: 100%;
+}
+
+.home .content {
+    flex: 1 1 400px;
+    margin-top: 30px;
+}
+
+.content h3 {
+    margin-left: 70px;
+    font-size: 50px;
+    text-shadow: 1px 1px 1px black;
+    color: #1c1c50;
+    font-weight: bold;
+}
+
+.content h3 span {
+    font-size: 40px;
+}
+
+.content p {
+    margin-left: 70px;
+    color: #1c1c50;
+}
+
+.content #shopnow {
+    margin-left: 70px;
+    width: 200px;
+    height: 38px;
+    border: 2px solid #1c1c50;
+    font-weight: bold;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.content #shopnow:hover {
+    background-color: #1c1c50;
+    color: white;
+}
+
+@media screen and (max-width: 800px) {
+    .content h3 {
+        margin-left: 50px;
+        font-size: 40px;
+    }
+
+    .content p {
+        margin-left: 50px;
+    }
+
+    .content #shopnow {
+        margin-left: 50px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .content h3 {
+        margin-left: 20px;
+    }
+
+    .content p {
+        margin-left: 20px;
+    }
+
+    .content #shopnow {
+        margin-left: 20px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .home-section {
+        height: 100vh;
+    }
+}
+
+/* home content */
+/* home section */
+/* top cards */
+#top-cards {
+    margin-top: 30px;
+    font-family: 'Roboto Slab', serif;
+}
+
+#top-cards .card img {
+    height: 60vh;
+}
+
+#top-cards h5 {
+    color: #1c1c50;
+    font-weight: bold;
+}
+
+#top-cards button {
+    width: 150px;
+    height: 33px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    background: transparent;
+    color: #1c1c50;
+    border: 2px solid #1c1c50;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+#top-cards button:hover {
+    background-color: #1c1c50;
+    color: white;
+}
+
+/* top cards */
+
+/* banner */
+.banner {
+    width: 100%;
+    height: 50vh;
+    margin-top: 50px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../../../media/products/38.png);
+}
+
+.banner .content {
+    text-align: center;
+    padding-top: 100px;
+}
+
+.banner .content h1 {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    letter-spacing: 3px;
+}
+
+.banner .content p {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    letter-spacing: 3px;
+}
+
+#bannerbtn button {
+    width: 150px;
+    height: 30px;
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+#bannerbtn button:hover {
+    background-color: #1c1c50;
+    border: none;
+}
+
+/* banner */
+
+
