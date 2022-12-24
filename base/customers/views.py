@@ -23,7 +23,7 @@ class RegisterView(View):
                                             phone_number=cd["phone_number"], password=cd["password1"])
             user.save()
             messages.success(request, "You Registered Successfully", "success")
-            return redirect("products:home")
+            return redirect("products:landing")
 
         return render(request, self.template_name, {"form": form})
 
@@ -34,7 +34,7 @@ class LoginView(View):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect("products:home")
+            return redirect("products:landing")
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):
