@@ -72,3 +72,13 @@ class ProfileView(LoginRequiredMixin, View):
 
     def post(self, request, user_id):
         pass
+
+
+class AboutView(View):
+    def get(self, request):
+        return render(request, "customers/about.html")
+
+
+class ContactView(View):
+    def get(self, request):
+        return render(request, "customers/contact.html")
