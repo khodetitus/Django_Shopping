@@ -1,35 +1,53 @@
 {% extends "base.html" %}
 {% load static %}
 {% block head %}
-    <link rel="stylesheet" href="{% static 'customers/css/style_login.css' %}">
+    <link rel="stylesheet" href="{% static 'customers/css/style_about.css' %}">
 {% endblock %}
 {% block content %}
-    <!-- login -->
-    <div class="container login">
-        <div class="row">
-            <div class="col-md-4" id="side1">
-                <h3>Hello Friend!</h3>
-                <p>Create New Account</p>
-                <div id="btn"><a href="register.html">Register</a></div>
+    <!-- about -->
+    <div class="container" id="about">
+        <h1>ABOUT US</h1>
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-6 py-md-0">
+                <div class="card">
+                    <img src="../../../media/products/about.png" alt="">
+                </div>
             </div>
-            <div class="col-md-8" id="side2">
-                <h3>Login Account</h3>
-                <div class="inp">
-                    <input type="text" placeholder="User Name" required>
-                    <input type="text" placeholder="Password" required>
-                </div>
-                <p>Forgot Your Password</p>
-                <div class="icons">
-                    <i class="fa-brands fa-twitter" ></i>
-                    <i class="fa-brands fa-facebook-f" ></i>
-                    <i class="fa-brands fa-instagram" ></i>
-                </div>
-                <div id="login"><button>LOG IN</button></div>
+            <div class="col-md-6 py-md-0">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dolore eaque id incidunt ipsum iure
+                    modi necessitatibus, neque nesciunt non, nostrum obcaecati odit praesentium quidem rem, repellat
+                    reprehenderit rerum sunt suscipit tenetur. Architecto est iste laboriosam molestiae obcaecati
+                    possimus! A asperiores aspernatur culpa deleniti distinctio dolores, ducimus eius fugiat harum
+                    inventore iusto libero minima molestias necessitatibus odit officiis, perspiciatis placeat quae
+                    quaerat quia quo recusandae reprehenderit rerum velit vitae voluptas voluptate! Aperiam, aspernatur
+                    aut delectus doloribus eum facere fugit illum nisi officiis, quam quas quibusdam, repellendus sint
+                    veniam vitae. Esse id, inventore ipsa magni nesciunt optio quia quod reiciendis ullam?</p>
             </div>
         </div>
     </div>
-    <!-- login -->
+    <!-- about -->
 
+    <!-- offer -->
+    <div class="container" id="offer">
+        <div class="row">
+            <div class="col-md-4 py-md-0">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <h5>Free Shipping</h5>
+                <p>On order over $100</p>
+            </div>
+            <div class="col-md-4 py-md-0">
+                <i class="fa-solid fa-truck"></i>
+                <h5>Fast Delivery</h5>
+                <p>World Wide</p>
+            </div>
+            <div class="col-md-4 py-md-0">
+                <i class="fa-solid fa-thumbs-up"></i>
+                <h5>Big Choice</h5>
+                <p>Of Product</p>
+            </div>
+        </div>
+    </div>
+    <!-- offer -->
     <!-- footer -->
     <footer id="footer" style="margin-top: 50px">
         <div class="footer-top">
@@ -104,4 +122,5 @@
     </footer>
     <!-- footer -->
     <a href="" class="arrow"><i><img src="../../../media/products/up_arrow_key.png" alt="" width="50"></i></a>
+
 {% endblock %}

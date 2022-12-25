@@ -1,35 +1,51 @@
 {% extends "base.html" %}
 {% load static %}
 {% block head %}
-    <link rel="stylesheet" href="{% static 'customers/css/style_login.css' %}">
+    <link rel="stylesheet" href="{% static 'customers/css/style_contact.css' %}">
 {% endblock %}
 {% block content %}
-    <!-- login -->
-    <div class="container login">
-        <div class="row">
-            <div class="col-md-4" id="side1">
-                <h3>Hello Friend!</h3>
-                <p>Create New Account</p>
-                <div id="btn"><a href="register.html">Register</a></div>
+    <!-- contact -->
+    <div class="container" id="contact">
+        <h1 class="text-center">CONTACT US</h1>
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <i class="fas fa-phone"> Phone</i>
+                    <h6>+989120572655</h6>
+                </div>
             </div>
-            <div class="col-md-8" id="side2">
-                <h3>Login Account</h3>
-                <div class="inp">
-                    <input type="text" placeholder="User Name" required>
-                    <input type="text" placeholder="Password" required>
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <i class="fa-solid fa-envelope"> Email</i>
+                    <h6>Masoudpro2@gmail.com</h6>
                 </div>
-                <p>Forgot Your Password</p>
-                <div class="icons">
-                    <i class="fa-brands fa-twitter" ></i>
-                    <i class="fa-brands fa-facebook-f" ></i>
-                    <i class="fa-brands fa-instagram" ></i>
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+                <div class="card">
+                    <i class="fa-solid fa-location-dot"> Address</i>
+                    <h6>Iran,Tehran,Tehranpars</h6>
                 </div>
-                <div id="login"><button>LOG IN</button></div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 30px">
+            <div class="col-md-4 py-3 py-md-0">
+                <input type="text" class="form-control form-control" placeholder="Name">
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+                <input type="text" class="form-control form-control" placeholder="Email">
+            </div>
+            <div class="col-md-4 py-3 py-md-0">
+                <input type="number" class="form-control form-control" placeholder="Phone">
+            </div>
+            <div class="form-group" style="margin-top: 30px">
+                <textarea class="form-control" id="" rows="5" placeholder="Message"></textarea>
+            </div>
+            <div id="messagebtn" class="text-center">
+                <button>Message</button>
             </div>
         </div>
     </div>
-    <!-- login -->
-
+    <!-- contact -->
     <!-- footer -->
     <footer id="footer" style="margin-top: 50px">
         <div class="footer-top">
@@ -104,4 +120,6 @@
     </footer>
     <!-- footer -->
     <a href="" class="arrow"><i><img src="../../../media/products/up_arrow_key.png" alt="" width="50"></i></a>
+
+
 {% endblock %}
