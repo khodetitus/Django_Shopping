@@ -18,7 +18,7 @@ class ProductAdmin(BaseAdmin):
     search_fields = ("name", "price", "stock", "is_deleted", "is_active", "is_available", "created")
     list_filter = ("name", "price", "stock", "is_deleted", "is_active", "is_available", "created")
     ordering = ("name",)
-    autocomplete_fields = ("category",)
+    autocomplete_fields = ('category',)
     prepopulated_fields = {"slug": ("name",)}
 
 
@@ -28,7 +28,7 @@ class ProductFeatureAdmin(BaseAdmin):
     search_fields = ("product", "color", "type", "material")
     list_filter = ("product", "color", "type", "material")
     ordering = ("product", "color", "type", "material")
-    autocomplete_fields = ("product",)
+    autocomplete_fields = ('product',)
 
 
 @admin.register(Comment)
@@ -37,4 +37,4 @@ class CommentAdmin(BaseAdmin):
     search_fields = ("user", "product", "title")
     list_filter = ("user", "product", "title")
     ordering = ("user", "product", "title")
-    autocomplete_fields = ("product", "user")
+    autocomplete_fields = ('user', 'product')

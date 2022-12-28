@@ -5,7 +5,7 @@ from .models import Product, Category
 
 class ProductView(View):
     def get(self, request):
-        products = Product.objects.filter(is_available=True)
+        products = Product.objects.get_active_list().filter(is_available=True)
         return render(request, "products/products.html", {"products": products})
 
 
@@ -15,12 +15,15 @@ class LandingView(View):
 
 
 class CategoryView(View):
-    def get(self, request):
-        categories = Category.objects.filter(is_sub=False)
-        return render(request, "products/category.html", {"category": categories})
+    def get(self, request, category_slug=None):
+        products = Product.objects.get_active_list()
+        if category_slug:
+            category = Category.objects.get_active_list().filter(slug=category_slug)
+            products = products.filter(category__in=category)
+        return render(request, 'products/products.html', {'products': products})
 
 
 class ProductDetailView(View):
     def get(self, request, slug):
-        product = Product.objects.get(slug=slug)
+        product = Product.objects.get_active_list().get(slug=slug)
         return render(request, "products/product_detail.html", {"product": product})

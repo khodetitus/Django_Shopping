@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{% static 'base_style.css' %}">
     <link rel="stylesheet" href="{% static 'navbar_style.css' %}">
 {% endblock %}
-
 {% block content %}
     <!-- landing content -->
     <section class="home">
@@ -20,9 +19,10 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis cupiditate eius facilis fugit
                 nesciunt nobis quia quis suscipit voluptatum! Debitis impedit incidunt veniam! Cum dolor itaque
                 molestiae, quae sequi vitae.</p>
-            <button id="shopnow">Shop Now</button>
+            <button id="shopnow"><a href="{% url "products:product" %}" style="text-decoration: none;color: black">Shop
+                Now</a></button>
         </div>
-        <div class="img">
+        <div class=" img">
             <img src="../../../media/products/1.png" alt="" style="object-fit: scale-down">
         </div>
     </section>
@@ -39,7 +39,8 @@
                             GL 75
                         </p>
                         <p><strong>$200.30<strike> $250.10</strike></strong></p>
-                        <button>Order Now</button>
+                        <button><a href="{% url "products:product" %}" style="text-decoration: none;color: black">Order
+                            Now</a></button>
                     </div>
                 </div>
             </div>
@@ -52,7 +53,8 @@
                             GL 76
                         </p>
                         <p><strong>$150.10<strike> $200.10</strike></strong></p>
-                        <button>Order Now</button>
+                        <button><a href="{% url "products:product" %}" style="text-decoration: none;color: black">Order
+                            Now</a></button>
                     </div>
                 </div>
             </div>
@@ -65,7 +67,8 @@
                             GL 77
                         </p>
                         <p><strong>$50.10<strike> $60</strike></strong></p>
-                        <button>Order Now</button>
+                        <button><a href="{% url "products:product" %}" style="text-decoration: none;color: black">Order
+                            Now</a></button>
                     </div>
                 </div>
             </div>
@@ -80,7 +83,9 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, delectus eos eveniet exercitationem
                 facere fuga, impedit iste itaque magni minus necessitatibus nemo nesciunt nihil nobis placeat reiciendis
                 repudiandae tempora voluptate?</p>
-            <div id="bannerbtn"><button>SHOP NOW</button></div>
+            <div id="bannerbtn">
+                <button>SHOP NOW</button>
+            </div>
         </div>
     </div>
     <!-- banner -->
