@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import RegisterForm, LoginForm
-from .models import User
+from .forms import RegisterForm, LoginForm, ProfileForm
+from .models import User, Profile, Address
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -51,7 +51,7 @@ class LoginView(View):
             if user is not None:
                 login(request, user)
                 messages.success(request, "You Logged In Successfully", "success")
-                return redirect("products:home")
+                return redirect("products:landing")
             messages.error(request, "Invalid User Name or Password", "danger")
         return render(request, self.template_name, {"form": form})
 
@@ -66,12 +66,38 @@ class LogoutView(LoginRequiredMixin, View):
 
 
 class ProfileView(LoginRequiredMixin, View):
+    form_class = ProfileForm
+    template_name = 'customers/profile.html'
+
+    def setup(self, request, *args, **kwargs):
+        self.user = User.objects.get(id=kwargs["user_id"])
+        self.profile = Profile.objects.get(user=self.user)
+        self.address = Address.objects.get(profile=self.profile)
+        return super().setup(request, *args, **kwargs)
+
     def get(self, request, user_id):
-        user = User.objects.get(id=user_id)
-        return render(request, "customers/profile.html", {"user": user})
+        profile = self.profile
+        form = self.form_class(instance=self.address,
+                               initial={"first_name": profile.first_name, "last_name": profile.last_name,
+                                        "gender": profile.gender, "birth_date": profile.birth_date,
+                                        "image": profile.image})
+        return render(request, self.template_name, {"form": form, "image": profile.image})
 
     def post(self, request, user_id):
-        pass
+        form = self.form_class(request.POST, instance=self.address, files=request.FILES)
+        if form.is_valid():
+            cd = form.cleaned_data
+            self.profile.first_name = cd["first_name"]
+            self.profile.last_name = cd["last_name"]
+            self.profile.gender = cd["gender"]
+            self.profile.birth_date = cd["birth_date"]
+            self.profile.image = cd["image"]
+            self.profile.save()
+            form.save()
+            messages.success(request, "Your Profile Updated Successfully", "success")
+            return redirect("customers:profile", user_id=user_id)
+        messages.error(request, "Error Please Try Again!", "danger")
+        return render(request, self.template_name, {"form": form})
 
 
 class AboutView(View):
