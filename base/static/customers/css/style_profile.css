@@ -1,0 +1,39 @@
+/*profile*/
+#top {
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#top h3 {
+    color: #1c1c50;
+    font-weight: bold;
+    font-family: 'Roboto Slab', serif;
+}
+
+#image {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 2px solid #1c1c50;
+}
+
+#form {
+    font-family: 'Roboto Slab', serif;
+}
+
+#profile {
+    margin-top: 10px;
+}
+
+#profile button {
+    width: 200px;
+    height: 32px;
+    color: white;
+    background-color: #1c1c50;
+    border: none;
+    font-weight: bold;
+}
+
+/*profile*/

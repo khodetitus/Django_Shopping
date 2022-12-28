@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top-navbar {
+    width: 100%;
+    height: 7vh;
+    background-color: #a9a9a926;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.top-icons {
+    margin-left: 45px;
+}
+
+.top-icons i {
+    font-size: 20px;
+    color: #1c1c50;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.other-links {
+    margin-right: 33px;
+}
+
+.other-links i {
+    color: #1c1c50;
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#btn-login {
+    width: 100px;
+    border: 2px solid #1c1c50;
+    color: #1c1c50;
+    font-weight: bold;
+    border-radius: 5px;
+    height: 5vh;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+#btn-login a {
+    text-decoration: none;
+    color: #1c1c50;
+    transition: 0.5s ease;
+}
+
+#btn-login a:hover {
+    background-color: #1c1c50;
+    color: white;
+}
+
+#btn-login:hover {
+    background-color: #1c1c50;
+    color: white;
+}
+
+#btn-register {
+    width: 100px;
+    border: 2px solid #1c1c50;
+    color: #1c1c50;
+    font-weight: bold;
+    border-radius: 5px;
+    height: 5vh;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+#btn-register a {
+    text-decoration: none;
+    color: #1c1c50;
+    transition: 0.5s ease;
+}
+
+#btn-register a:hover {
+    background-color: #1c1c50;
+    color: white;
+}
+
+#btn-register:hover {
+    background-color: #1c1c50;
+    color: white;
+}
+
+
+@media screen and (max-width: 350px) {
+    .top-icons {
+        margin-left: 10px;
+    }
+
+    .top-icons i {
+        font-size: 10px;
+    }
+
+    .other-links {
+        margin-right: 10px;
+    }
+
+    .other-links i {
+        font-size: 10px;
+    }
+
+    #btn-login {
+        width: 50px;
+        height: 5vh;
+        font-size: 13px;
+    }
+
+    #btn-register {
+        width: 60px;
+        height: 5vh;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .top-icons {
+        margin-left: 5px;
+    }
+
+    .top-icons i {
+        font-size: 12px;
+    }
+
+    .other-links {
+        margin-right: 10px;
+    }
+
+    .other-links i {
+        font-size: 12px;
+    }
+
+    #btn-login {
+        width: 40px;
+        height: 5vh;
+        font-size: 10px;
+    }
+
+    #btn-register {
+        width: 50px;
+        height: 5vh;
+        font-size: 10px;
+    }
+}
+
