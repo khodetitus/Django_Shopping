@@ -52,17 +52,20 @@
                        aria-expanded="false">
                         Category
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #1c1c50">
-                        <li><a class="dropdown-item" href="#">Smart Watch</a></li>
-                        <li><a class="dropdown-item" href="#">Casio</a></li>
-                        <li><a class="dropdown-item" href="#">Tissot</a></li>
-                        <li><a class="dropdown-item" href="#">Swatch</a></li>
-                        <li><a class="dropdown-item" href="#">Seiko</a></li>
-                        <li><a class="dropdown-item" href="#">Rolex</a></li>
-                        <li><a class="dropdown-item" href="#">Omega</a></li>
-                        <li><a class="dropdown-item" href="#">Hublot</a></li>
-                        <li><a class="dropdown-item" href="#">Diesel</a></li>
-                    </ul>
+                    {#                    {% block category %}#}
+                    {% block category %}
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown"
+                            style="background-color: #1c1c50">
+
+                            {% for cat in categories %}
+                                <li>
+                                    <a class="dropdown-item"
+                                       href="{% url "products:category" cat.slug %}">{{ cat.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endblock %}
+                    {#                    {% endblock %}#}
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'customers:about' %}">About Us</a>
