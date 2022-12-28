@@ -6,14 +6,22 @@
         <i class="fa-brands fa-facebook-f"></i>
         <i class="fa-brands fa-instagram"></i>
     </div>
+
     <div class="other-links">
-        <button id="btn-login">
-            <a href="{% url 'customers:login' %}">Login</a>
-        </button>
-        <button id="btn-register">
-            <a href="{% url 'customers:register' %}">Register</a>
-        </button>
-        <i class="fa-solid fa-user"></i>
+        {% if request.user.is_authenticated %}
+            <button id="btn-register">
+                <a href="{% url 'customers:logout' %}">Logout</a>
+            </button>
+            <a href="{% url 'customers:profile' request.user.id %}"><i class="fa-solid fa-user"></i></a>
+        {% else %}
+            <button id="btn-login">
+                <a href="{% url 'customers:login' %}">Login</a>
+            </button>
+            <button id="btn-register">
+                <a href="{% url 'customers:register' %}">Register</a>
+            </button>
+        {% endif %}
+
         <i class="fa-solid fa-cart-shopping"></i>
     </div>
 </div>
@@ -57,11 +65,11 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">About Us</a>
+                    <a class="nav-link active" href="{% url 'customers:about' %}">About Us</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Contact Us</a>
+                    <a class="nav-link active" href="{% url 'customers:contact' %}">Contact Us</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
