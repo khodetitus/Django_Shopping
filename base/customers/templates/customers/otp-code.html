@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'base_style.css' %}">
+    <link rel="stylesheet" href="{% static 'navbar_style.css' %}">
+    <link rel="stylesheet" href="{% static 'customers/css/style_register.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="inp">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div id="reza">
+                {{ form.as_p }}
+            </div>
+            <div id="login">
+                <button type="submit">Verify</button>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}

@@ -1,31 +1,60 @@
+# import random
+# from core.utils import send_otp_code
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import RegisterForm, LoginForm, ProfileForm
-from .models import User, Profile, Address
+from .forms import RegisterForm, LoginForm, ProfileForm, OtpCodeForm
+from .models import User, Profile, Address, OtpCode
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class RegisterView(View):
-    class_form = RegisterForm
+    form_class = RegisterForm
     template_name = 'customers/register.html'
 
     def get(self, request):
-        form = self.class_form()
+        form = self.form_class()
         return render(request, self.template_name, {"form": form})
 
     def post(self, request):
-        form = self.class_form(request.POST)
+        form = self.form_class(request.POST)
         if form.is_valid():
+            # random_code = random.randint(1000, 9999)
+            # send_otp_code(form.cleaned_data['phone_number'], random_code)
+            # OtpCode.objects.create(phone_number=form.cleaned_data['phone_number'], code=random_code)
             cd = form.cleaned_data
             user = User.objects.create_user(username=cd["username"], email=cd["email"],
                                             phone_number=cd["phone_number"], password=cd["password1"])
             user.save()
-            messages.success(request, "You Registered Successfully", "success")
-            return redirect("products:landing")
-
+            messages.success(request, "The code has been sent to your phone", "success")
+            # print(random_code)
+            return redirect("customers:verify")
         return render(request, self.template_name, {"form": form})
+
+
+# class OtpCodeView(View):
+    # form_class = OtpCodeForm
+    #
+    # def get(self, request):
+    #     form = self.form_class()
+    #     return render(request, 'customers/otp-code.html', {'form': form})
+    #
+    # def post(self, request):
+    #     user_session = request.session['user_registration_info']
+    #     code_instance = OtpCode.objects.get(phone_number=user_session['phone_number'])
+    #     form = self.form_class(request.POST)
+    #     if form.is_valid():
+    #         cd = form.cleaned_data
+    #         if cd['code'] == code_instance.code:
+    #             User.objects.create_user(username=user_session['username'], email=user_session['email'],
+    #                                      phone_number=user_session['phone_number'], password=user_session['password'])
+    #             code_instance.delete()
+    #             messages.success(request, 'Registered Successfully', 'success')
+    #             return redirect('home:home')
+    #         messages.error(request, 'The entered code is not correct', 'danger')
+    #         return redirect('customers:verify')
+    #     return redirect('products:landing')
 
 
 class LoginView(View):
