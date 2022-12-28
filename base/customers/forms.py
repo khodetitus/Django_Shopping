@@ -80,6 +80,11 @@ class RegisterForm(forms.Form):
                 raise ValidationError("Password does not match")
 
 
+class OtpCodeForm(forms.Form):
+    otp_code = forms.CharField(label="",
+                               widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Verify Code"}))
+
+
 class LoginForm(forms.Form):
     phone_number = forms.CharField(label="", widget=forms.TextInput(
         attrs={"class": "form-control", "placeholder": "Phone Number"}))

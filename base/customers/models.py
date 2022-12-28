@@ -1,11 +1,11 @@
 from django.db import models
 from core.models import BaseModel
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import UserManager
 from django.core.validators import RegexValidator
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=11, unique=True, validators=[
@@ -24,12 +24,6 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return f"Username: {self.username} - Email: {self.email} - Phone Number : {self.phone_number} - Admin: {self.is_admin}"
-
-    def has_perm(self, perm, obj=None):
-        return True
-
-    def has_module_perms(self, app_label):
-        return True
 
     @property
     def is_staff(self):
