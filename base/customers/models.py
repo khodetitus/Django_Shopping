@@ -38,20 +38,20 @@ class User(AbstractBaseUser):
 
 class Profile(BaseModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cprofile")
-    first_name = models.CharField(max_length=50, )
-    last_name = models.CharField(max_length=50, )
-    CHOICES = [("male", "Male"), ("female", "Female")]
-    gender = models.CharField(max_length=10, choices=CHOICES, null=True, blank=True)
+    first_name = models.CharField(max_length=50, null=True, blank=True)
+    last_name = models.CharField(max_length=50, null=True, blank=True)
+    CHOICES = [("male", "MALE"), ("female", "FEMALE")]
+    gender = models.CharField(max_length=10, choices=CHOICES, default="male")
     birth_date = models.DateField(null=True, blank=True)
-    image = models.ImageField(upload_to='profile_image', null=True, blank=True, default='default.jpg')
+    image = models.ImageField(upload_to='profile_image', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Profile'
         verbose_name_plural = 'Profiles'
 
     def save(self, *args, **kwargs):
-        male = 'default/default_male.png'
-        female = 'default/default_female.png'
+        male = 'default/male.png'
+        female = 'default/female.png'
         if not self.image:
             self.image = male if self.gender == 'male' else female
         elif self.image and self.image in [male, female]:
@@ -64,14 +64,14 @@ class Profile(BaseModel):
 
 class Address(BaseModel):
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name="padress")
-    province = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
-    address1 = models.CharField(max_length=200)
-    address2 = models.CharField(max_length=200, null=True, blank=True)
+    province = models.CharField(max_length=50, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True, blank=True)
+    address1 = models.TextField(max_length=200, null=True, blank=True)
+    address2 = models.TextField(max_length=200, null=True, blank=True)
     tel = models.CharField(max_length=11, unique=True, validators=[
-        RegexValidator(regex=r'^0[0-9]{2,}[0-9]{7,}$', message='The Telephone Number invalid',
-                       code='invalid_phone_number')])
-    postal_code = models.CharField(max_length=10, unique=True)
+        RegexValidator(regex=r'^0[0-9]{2,}[0-9]{7,9}$', message='The Telephone Number invalid',
+                       code='invalid_phone_number')], null=True, blank=True)
+    postal_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Address'

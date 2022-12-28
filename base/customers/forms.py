@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User, Address
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
@@ -87,22 +87,35 @@ class LoginForm(forms.Form):
                                widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Password"}))
 
 
-class ProfileForm(forms.Form):
-    fist_name = forms.CharField(label="",
-                                widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "First Name"}))
+class ProfileForm(forms.ModelForm):
+    first_name = forms.CharField(label="",
+                                 widget=forms.TextInput(
+                                     attrs={"class": "form-control w-50", "placeholder": "First Name"}),
+                                 required=False)
     last_name = forms.CharField(label="",
-                                widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Last Name"}))
-    gender = forms.ChoiceField(label="", choices=[("Male", "Male"), ("Female", "Female")])
+                                widget=forms.TextInput(
+                                    attrs={"class": "form-control w-50", "placeholder": "Last Name"}),
+                                required=False)
+    gender = forms.ChoiceField(label="", choices=[("male", "Male"), ("female", "Female")], required=False,
+                               widget=forms.Select(
+                                   attrs={"class": "form-control w-50"}))
     birth_date = forms.DateField(label="",
-                                 widget=forms.DateInput(attrs={"class": "form-control", "placeholder": "Birth Date"}))
-    image = forms.ImageField(label="", widget=forms.FileInput(attrs={"class": "form-control"}))
-    province = forms.CharField(label="",
-                               widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Province"}))
-    city = forms.CharField(label="", widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "City"}))
-    address1 = forms.CharField(label="",
-                               widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Address 1"}))
-    address2 = forms.CharField(label="",
-                               widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Address 2"}))
-    tel = forms.CharField(label="", widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Tel"}))
-    postal_code = forms.CharField(label="",
-                                  widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Postal Code"}))
+                                 widget=forms.DateInput(
+                                     attrs={"class": "form-control w-50", "placeholder": "Birth Date"}),
+                                 required=False)
+    image = forms.ImageField(label="", widget=forms.FileInput(attrs={"class": "form-control w-50"}), required=False)
+
+    class Meta:
+        model = Address
+
+        fields = ["first_name", "last_name", "gender", "birth_date", "image", "province", "city", "address1",
+                  "address2", "tel", "postal_code"]
+        widgets = {
+            "province": forms.TextInput(attrs={"class": "form-control w-50", "placeholder": "Province"}),
+            "city": forms.TextInput(attrs={"class": "form-control w-50", "placeholder": "city"}),
+            "address1": forms.Textarea(attrs={"class": "form-control w-75", "placeholder": "Main Address"}),
+            "address2": forms.Textarea(attrs={"class": "form-control w-75", "placeholder": "Extra Address"}),
+            "tel": forms.TextInput(attrs={"class": "form-control w-50", "placeholder": "Tel"}),
+            "postal_code": forms.TextInput(attrs={"class": "form-control w-50", "placeholder": "Postal Code"}),
+
+        }

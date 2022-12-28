@@ -1,6 +1,62 @@
 {% extends "base.html" %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'base_style.css' %}">
+    <link rel="stylesheet" href="{% static 'navbar_style.css' %}">
+    <link rel="stylesheet" href="{% static 'customers/css/style_profile.css' %}">
+{% endblock %}
 {% block content %}
-    <h2 class="text-center">
-        {{ user.username }}
-    </h2>
+    <div id="top" class="text-center">
+        <h3>Profile Account</h3>
+        <hr>
+        <div class="text-center mb-4">
+            <img src="{{ image.url }}" alt="" id="image">
+        </div>
+        <form action="" method="post" enctype="multipart/form-data" id="form" class="card p-4" novalidate>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div style="margin-left: 200px">
+                        {{ form.first_name }}
+                        <br>
+                        {{ form.birth_date }}
+                        <br>
+                        {{ form.gender }}
+                        <br>
+                        {{ form.city }}
+                        <br>
+                        {{ form.tel }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div style="margin-left: 200px">
+
+                        {{ form.last_name }}
+                        <br>
+                        {{ form.image }}
+                        <br>
+                        {{ form.province }}
+                        <br>
+                        {{ form.postal_code }}
+                        <br>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-4">
+                    <div style="margin-left: 200px">
+                        {{ form.address1 }}
+                    </div>
+                </div>
+                <div class="col-md-6 mt-4">
+                    <div style="margin-left: 200px">
+                        {{ form.address2 }}
+                    </div>
+                </div>
+                <div id="profile">
+                    <button type="submit">UPDATE</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
 {% endblock %}
