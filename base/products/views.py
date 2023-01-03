@@ -15,15 +15,15 @@ class LandingView(View):
 
 
 class CategoryView(View):
-    def get(self, request, category_slug=None):
+    def get(self, request, slug_category=None):
         products = Product.objects.get_active_list()
-        if category_slug:
-            category = Category.objects.get_active_list().filter(slug=category_slug)
+        if slug_category:
+            category = Category.objects.get_active_list().filter(slug=slug_category)
             products = products.filter(category__in=category)
         return render(request, 'products/products.html', {'products': products})
 
 
 class ProductDetailView(View):
-    def get(self, request, slug):
-        product = Product.objects.get_active_list().get(slug=slug)
+    def get(self, request, slug_product):
+        product = Product.objects.get_active_list().get(slug=slug_product)
         return render(request, "products/product_detail.html", {"product": product})
