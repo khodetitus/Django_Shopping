@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     'customers',
     'orders',
     'products',
+    'API',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    'drf_yasg'
 
 ]
 
@@ -128,3 +133,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 AUTH_USER_MODEL = 'customers.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ]
+}
