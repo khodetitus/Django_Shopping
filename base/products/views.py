@@ -24,6 +24,6 @@ class CategoryView(View):
 
 
 class ProductDetailView(View):
-    def get(self, request, slug_product):
-        product = Product.objects.get_active_list().get(slug=slug_product)
+    def get(self, request, product_id, slug_product):
+        product = Product.objects.get_active_list().filter(id=product_id, slug=slug_product)
         return render(request, "products/product_detail.html", {"product": product})

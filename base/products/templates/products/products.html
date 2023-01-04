@@ -22,7 +22,7 @@
                                  style="object-fit: scale-down;width: 250px;height: 250px;" class="mx-auto">
                             <div class="card-body">
                                 <h3>{{ pd.name }}</h3>
-                                <button><a href="{% url "products:product-detail" pd.slug %}"
+                                <button><a href="{{ pd.get_absolute_url }}"
                                            style="text-decoration: none; color:black;">Detail</a></button>
                                 <div class="star">
                                     <i class="fas fa-star checked"></i>
