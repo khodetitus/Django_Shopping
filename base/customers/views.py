@@ -34,27 +34,27 @@ class RegisterView(View):
 
 
 # class OtpCodeView(View):
-    # form_class = OtpCodeForm
-    #
-    # def get(self, request):
-    #     form = self.form_class()
-    #     return render(request, 'customers/otp-code.html', {'form': form})
-    #
-    # def post(self, request):
-    #     user_session = request.session['user_registration_info']
-    #     code_instance = OtpCode.objects.get(phone_number=user_session['phone_number'])
-    #     form = self.form_class(request.POST)
-    #     if form.is_valid():
-    #         cd = form.cleaned_data
-    #         if cd['code'] == code_instance.code:
-    #             User.objects.create_user(username=user_session['username'], email=user_session['email'],
-    #                                      phone_number=user_session['phone_number'], password=user_session['password'])
-    #             code_instance.delete()
-    #             messages.success(request, 'Registered Successfully', 'success')
-    #             return redirect('home:home')
-    #         messages.error(request, 'The entered code is not correct', 'danger')
-    #         return redirect('customers:verify')
-    #     return redirect('products:landing')
+# form_class = OtpCodeForm
+#
+# def get(self, request):
+#     form = self.form_class()
+#     return render(request, 'customers/otp-code.html', {'form': form})
+#
+# def post(self, request):
+#     user_session = request.session['user_registration_info']
+#     code_instance = OtpCode.objects.get(phone_number=user_session['phone_number'])
+#     form = self.form_class(request.POST)
+#     if form.is_valid():
+#         cd = form.cleaned_data
+#         if cd['code'] == code_instance.code:
+#             User.objects.create_user(username=user_session['username'], email=user_session['email'],
+#                                      phone_number=user_session['phone_number'], password=user_session['password'])
+#             code_instance.delete()
+#             messages.success(request, 'Registered Successfully', 'success')
+#             return redirect('home:home')
+#         messages.error(request, 'The entered code is not correct', 'danger')
+#         return redirect('customers:verify')
+#     return redirect('products:landing')
 
 
 class LoginView(View):
@@ -104,7 +104,7 @@ class ProfileView(LoginRequiredMixin, View):
         self.address = Address.objects.get(profile=self.profile)
         return super().setup(request, *args, **kwargs)
 
-    def get(self, request, user_id):
+    def get(self, request, *args, **kwargs):
         profile = self.profile
         form = self.form_class(instance=self.address,
                                initial={"first_name": profile.first_name, "last_name": profile.last_name,
