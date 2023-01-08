@@ -1,12 +1,14 @@
 # import random
 # from core.utils import send_otp_code
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .forms import RegisterForm, LoginForm, ProfileForm, OtpCodeForm
 from .models import User, Profile, Address, OtpCode
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import views as auth_views
+from django.urls import reverse_lazy
 
 
 class RegisterView(View):
@@ -99,9 +101,9 @@ class ProfileView(LoginRequiredMixin, View):
     template_name = 'customers/profile.html'
 
     def setup(self, request, *args, **kwargs):
-        self.user = User.objects.get(id=kwargs["user_id"])
-        self.profile = Profile.objects.get(user=self.user)
-        self.address = Address.objects.get(profile=self.profile)
+        self.user = get_object_or_404(User, id=kwargs["user_id"])
+        self.profile = get_object_or_404(Profile, user=self.user)
+        self.address = get_object_or_404(Address, profile=self.profile)
         return super().setup(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
@@ -127,6 +129,12 @@ class ProfileView(LoginRequiredMixin, View):
             return redirect("customers:profile", user_id=user_id)
         messages.error(request, "Error Please Try Again!", "danger")
         return render(request, self.template_name, {"form": form})
+
+
+class PasswordResetView(auth_views.PasswordResetView):
+    template_name = "customers/password_reset.html"
+    success_url = reverse_lazy("customers:password_reset_done")
+    email_template_name = "customers/password_reset_email.html"
 
 
 class AboutView(View):
