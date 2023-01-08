@@ -17,9 +17,6 @@ class Category(BaseModel):
     def __str__(self):
         return f"Name: {self.name} - Sub Category: {self.sub_category}"
 
-    # def get_absolute_url(self):
-    #     return reverse('products:product-detail', args=[self.slug])
-
 
 class Product(BaseModel):
     category = models.ManyToManyField(Category, related_name='products')
