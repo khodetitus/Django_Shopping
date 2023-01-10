@@ -16,6 +16,13 @@ class Order(BaseModel):
     def __str__(self):
         return f"User: {self.user} - DateTime Created: {self.created} - Paid: {self.paid} - Discount: {self.discount}"
 
+    def get_total_price(self):
+        total = sum(item.get_cost() for item in self.items.all())
+        if self.discount:
+            discount_price = (self.discount / 100) * total
+            return int(total - discount_price)
+        return total
+
 
 class OrderItem(BaseModel):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -30,10 +37,13 @@ class OrderItem(BaseModel):
     def __str__(self):
         return f"Product: {self.product} - Order: {self.order} - Price: {self.price} - Quantity: {self.quantity}"
 
+    def get_cost(self):
+        return self.price * self.quantity
+
 
 class Coupon(BaseModel):
     discount = models.IntegerField()
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='use_coupon')
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='use_coupon', null=True, blank=True)
     code = models.CharField(max_length=16, unique=True)
     valid_from = models.DateTimeField()
     valid_to = models.DateTimeField()
