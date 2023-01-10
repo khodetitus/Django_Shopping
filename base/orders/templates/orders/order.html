@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'products/css/style_product.css' %}">
+    <link rel="stylesheet" href="{% static 'offer_style.css' %}">
+    <link rel="stylesheet" href="{% static 'base_style.css' %}">
+    <link rel="stylesheet" href="{% static 'navbar_style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h3>Checkout</h3>
+    <p>Total: {{ order.get_total_price }}</p>
+    <a href="{% url 'orders:order_pay' order.id %}" class="btn btn-primary" style="background-color: #1c1c50">Pay</a>
+    <br><br>
+    <form action="{% url 'orders:apply_coupon' order.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Apply">
+    </form>
+{% endblock %}
