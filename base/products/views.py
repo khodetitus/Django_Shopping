@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_list_or_404,get_object_or_404
 from django.views import View
 from .models import Product, Category
+from orders.forms import CartAddForm
 
 
 class ProductView(View):
@@ -24,7 +25,8 @@ class CategoryView(View):
 
 
 class ProductDetailView(View):
-    def get(self, request, product_id, slug_product):
-        product = get_list_or_404(Product, id=product_id, slug=slug_product, is_active=True, is_deleted=False)
+    def get(self, request, product_id):
+        form = CartAddForm
+        product = get_object_or_404(Product, id=product_id, is_active=True, is_deleted=False)
 
-        return render(request, "products/product_detail.html", {"product": product})
+        return render(request, "products/product_detail.html", {"product": product, "form": form})

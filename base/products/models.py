@@ -40,10 +40,10 @@ class Product(BaseModel):
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"Category: {self.category} - Name: {self.name} - Price: {self.price} - Available: {self.is_available} - Stock: {self.stock}"
+        return self.name
 
     def get_absolute_url(self):
-        return reverse('products:product-detail', args=[self.id, self.slug])
+        return reverse('products:product-detail', args=[self.id])
 
 
 class ProductFeature(BaseModel):
